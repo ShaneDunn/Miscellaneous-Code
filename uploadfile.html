@@ -1,0 +1,39 @@
+<div>
+  <!-- Include the Google CSS package -->
+  <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+
+  <!-- You can also include your own CSS styles -->
+  <style>
+   form { margin: 40px auto; }
+   input { display:block; margin: 20px; }
+  </style>
+
+  <!-- The function will be called after the Google Script has executed -->
+  <script>
+    function fileUploaded(status) {
+        document.getElementById('myForm').style.display = 'none';
+        document.getElementById('output').innerHTML = status;
+    }
+  </script>
+
+  <!-- This is the actual HTML form -->
+  <form id="myForm">
+      <!-- Text input field -->
+      <input type="text" name="myName" placeholder="GDK">
+
+      <!-- File input filed -->
+      <input type="file" name="theFile">
+
+      <!-- The submit button. It calls the server side function uploadfiles() on click -->
+      <input type="button" value="UpLoad" id="button"
+        onclick="google.script.run.withSuccessHandler(fileUploaded).uploadTheFile(this.parentNode)">
+  </form>
+
+  <form id="closeForm">
+    <input type="button" value="Close" onclick="google.script.host.close()" />
+  </form>
+
+  <!-- Here the results of the form submission will be displayed -->
+  <div id="output"></div>
+
+</div>
