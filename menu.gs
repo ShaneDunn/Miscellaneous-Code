@@ -10,6 +10,26 @@ function onOpen() {
       .addToUi();
 }
 
+/**
+ * Add a custom menu to the active spreadsheet
+ */
+function onOpen() {
+  var ui = SpreadsheetApp.getUi();
+  // Or DocumentApp or FormApp.
+  ui.createMenu('GDK Menu')
+      .addItem('Read Data', 'readRows')
+      .addItem('Load Meter Data', 'doGet')
+      .addSeparator()
+      .addSubMenu(ui.createMenu('Print')
+          .addItem('Water Statement', 'createDocFromSheet3')
+          .addItem('Water Advice', 'createDocFromSheet2')
+          .addItem('Water Request', 'createDocFromSheet')
+                  )
+      .addToUi();
+}
+
+
+
 function createDoc01(){
   var templateDocID = "13Wsgk7jmjXtjfyNorlX_OlBJLZoy3u8PuRarozETwOo"; // get template file id - DBW Scheduling API - tables template
   var API_DATA = "Sheet1"; // name of sheet with api data
